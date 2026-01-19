@@ -27,8 +27,8 @@
       }
     },
     {
-      "name": "atlassian-confluence",
-      "description": "MCP server for Atlassian Confluence - manage pages, spaces, and content",
+      "name": "github",
+      "description": "MCP server for GitHub - manage repositories, issues, pull requests, and more",
       "vendor": "PaloIT Organization",
       "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
       "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
@@ -36,12 +36,9 @@
       "runtime": "node",
       "config": {
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-atlassian"],
+        "args": ["-y", "@modelcontextprotocol/server-github"],
         "env": {
-          "ATLASSIAN_URL": "https://your-domain.atlassian.net",
-          "ATLASSIAN_EMAIL": "your-email@example.com",
-          "ATLASSIAN_API_TOKEN": "your-api-token",
-          "ATLASSIAN_PRODUCT": "confluence"
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
         }
       },
       "capabilities": {
