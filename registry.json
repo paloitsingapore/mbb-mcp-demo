@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "servers": [
     {
-      "name": "example-weather",
-      "description": "Example weather MCP server that provides weather information",
+      "name": "atlassian-jira",
+      "description": "MCP server for Atlassian Jira - manage issues, projects, and workflows",
       "vendor": "PaloIT Organization",
       "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
       "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
@@ -12,30 +12,42 @@
       "runtime": "node",
       "config": {
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-weather"]
+        "args": ["-y", "@modelcontextprotocol/server-atlassian"],
+        "env": {
+          "ATLASSIAN_URL": "https://your-domain.atlassian.net",
+          "ATLASSIAN_EMAIL": "your-email@example.com",
+          "ATLASSIAN_API_TOKEN": "your-api-token",
+          "ATLASSIAN_PRODUCT": "jira"
+        }
       },
       "capabilities": {
         "tools": true,
-        "resources": false,
-        "prompts": false
+        "resources": true,
+        "prompts": true
       }
     },
     {
-      "name": "example-filesystem",
-      "description": "Example filesystem MCP server for file operations",
-      "vendor": "PaloIt Organization",
+      "name": "atlassian-confluence",
+      "description": "MCP server for Atlassian Confluence - manage pages, spaces, and content",
+      "vendor": "PaloIT Organization",
       "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
       "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
       "license": "MIT",
       "runtime": "node",
       "config": {
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+        "args": ["-y", "@modelcontextprotocol/server-atlassian"],
+        "env": {
+          "ATLASSIAN_URL": "https://your-domain.atlassian.net",
+          "ATLASSIAN_EMAIL": "your-email@example.com",
+          "ATLASSIAN_API_TOKEN": "your-api-token",
+          "ATLASSIAN_PRODUCT": "confluence"
+        }
       },
       "capabilities": {
         "tools": true,
         "resources": true,
-        "prompts": false
+        "prompts": true
       }
     }
   ]
