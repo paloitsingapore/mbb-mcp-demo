@@ -1,0 +1,42 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/registry.json",
+  "version": "1.0.0",
+  "servers": [
+    {
+      "name": "example-weather",
+      "description": "Example weather MCP server that provides weather information",
+      "vendor": "PaloIT Organization",
+      "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
+      "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
+      "license": "MIT",
+      "runtime": "node",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-weather"]
+      },
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      }
+    },
+    {
+      "name": "example-filesystem",
+      "description": "Example filesystem MCP server for file operations",
+      "vendor": "PaloIt Organization",
+      "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
+      "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
+      "license": "MIT",
+      "runtime": "node",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+      },
+      "capabilities": {
+        "tools": true,
+        "resources": true,
+        "prompts": false
+      }
+    }
+  ]
+}

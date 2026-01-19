@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Registry Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            color: #ecf0f1;
+            padding: 0;
+        }
+        .endpoint {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .badge {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-right: 8px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .server-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .server-card h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 MCP Registry Demo</h1>
+        <p>Welcome to the Model Context Protocol (MCP) Registry hosted on GitHub Pages.</p>
+        
+        <div class="endpoint">
+            <strong>Registry Endpoint:</strong><br>
+            <code id="registryUrl">https://paloitsingapore.github.io/mbb-mcp-demo/registry.json</code>
+        </div>
+
+        <h2>📋 About This Registry</h2>
+        <p>This registry exposes MCP server configurations that can be consumed by MCP clients. The registry follows the official MCP registry schema and provides metadata about available servers.</p>
+
+        <h2>🔗 API Access</h2>
+        <p>Access the registry JSON directly:</p>
+        <pre><code>curl https://paloitsingapore.github.io/mbb-mcp-demo/registry.json</code></pre>
+
+        <h2>📦 Available Servers</h2>
+        <div id="servers">
+            <p>Loading servers...</p>
+        </div>
+
+        <h2>🛠️ How to Use</h2>
+        <ol>
+            <li>Point your MCP client to the registry URL</li>
+            <li>The client will fetch available server configurations</li>
+            <li>Select and install the servers you need</li>
+            <li>Configure with any required parameters</li>
+        </ol>
+
+        <h2>💡 Integration Example</h2>
+        <pre><code>{
+  "mcpServers": {
+    "registry": {
+      "url": "https://paloitsingapore.github.io/mbb-mcp-demo/registry.json"
+    }
+  }
+}</code></pre>
+
+        <h2>📚 Resources</h2>
+        <ul>
+            <li><a href="https://modelcontextprotocol.io" target="_blank">MCP Documentation</a></li>
+            <li><a href="https://github.com/paloitsingapore/mbb-mcp-demo" target="_blank">GitHub Repository</a></li>
+            <li><a href="registry.json" target="_blank">View Registry JSON</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Fetch and display servers from registry.json
+        fetch('registry.json')
+            .then(response => response.json())
+            .then(data => {
+                const serversDiv = document.getElementById('servers');
+                if (data.servers && data.servers.length > 0) {
+                    serversDiv.innerHTML = data.servers.map(server => `
+                        <div class="server-card">
+                            <h3>${server.name}</h3>
+                            <p>${server.description}</p>
+                            <div>
+                                <span class="badge">${server.runtime}</span>
+                                <span class="badge">${server.license}</span>
+                            </div>
+                            <p><strong>Vendor:</strong> ${server.vendor}</p>
+                            <p><strong>Capabilities:</strong> 
+                                ${Object.entries(server.capabilities).filter(([k,v]) => v).map(([k]) => k).join(', ')}
+                            </p>
+                        </div>
+                    `).join('');
+                } else {
+                    serversDiv.innerHTML = '<p>No servers available in the registry.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading registry:', error);
+                document.getElementById('servers').innerHTML = '<p>Error loading servers. Please check the console.</p>';
+            });
+    </script>
+</body>
+</html>
