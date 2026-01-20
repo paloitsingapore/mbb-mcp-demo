@@ -6,19 +6,12 @@
       "name": "atlassian-jira",
       "description": "MCP server for Atlassian Jira - manage issues, projects, and workflows",
       "vendor": "PaloIT Organization",
-      "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
+      "sourceUrl": "https://github.com/mcp/atlassian/atlassian-mcp-server",
       "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
       "license": "MIT",
-      "runtime": "node",
-      "config": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-atlassian"],
-        "env": {
-          "ATLASSIAN_URL": "https://your-domain.atlassian.net",
-          "ATLASSIAN_EMAIL": "your-email@example.com",
-          "ATLASSIAN_API_TOKEN": "your-api-token",
-          "ATLASSIAN_PRODUCT": "jira"
-        }
+      "transport": {
+        "type": "sse",
+        "url": "https://your-atlassian-mcp-server.com/sse"
       },
       "capabilities": {
         "tools": true,
@@ -30,16 +23,12 @@
       "name": "github",
       "description": "MCP server for GitHub - manage repositories, issues, pull requests, and more",
       "vendor": "PaloIT Organization",
-      "sourceUrl": "https://github.com/paloitsingapore/mbb-mcp-demo",
+      "sourceUrl": "https://github.com/mcp/github/github-mcp-server",
       "homepage": "https://paloitsingapore.github.io/mbb-mcp-demo",
       "license": "MIT",
-      "runtime": "node",
-      "config": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-github"],
-        "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
-        }
+      "transport": {
+        "type": "sse",
+        "url": "https://your-github-mcp-server.com/sse"
       },
       "capabilities": {
         "tools": true,
